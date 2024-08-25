@@ -1,0 +1,32 @@
+#include "hsp3_64.as"
+title"ビリオンツール"
+screen 0,250,218
+dialog"一兆文字まで保存されます\n更新すると文字で少しずつ重くなっていきます", 0, "info"
+sdim b, 1000000000000
+pos 0,18
+mesbox b, 250, 150, 0
+button"更新", *reload
+button"info", *info
+*load
+repeat 1000000000
+pos 0,0
+color 255,255,255,boxf
+color 0,0,0
+mes "現在"+count
+count = count+1
+b = b+count+"\n"
+wait 0
+loop
+*reload
+clrobj
+pos 0,0
+color 255,255,255,boxf
+color 0,0,0
+mes "現在"+count
+mesbox b, 250, 150, 0
+button"更新", *reload
+button"info", *info
+goto *load
+*info
+dialog"V1.0\nこのソフトをつかって発生した損害は\n私は悪くないので自分でどうにかしてください\n再配布禁止\nかぁくん@"+gettime(0), 0,"info"
+goto *load
